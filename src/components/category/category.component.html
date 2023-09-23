@@ -1,0 +1,69 @@
+<br>
+<div *ngIf="!loading">
+    <select id="categories"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="selectedCategory"
+            (change)="getProducts(selectedCategory)">
+        <option [ngValue]="null" disabled selected>Choose a category</option>
+        <option *ngFor="let data of categories" [ngValue]="data.categoryName">{{ data.categoryName }}</option>
+    </select>
+</div>
+
+<div *ngIf="!loading"  class="app">
+    <div  class="fluid-container">
+
+        <div class="relative overflow-x-auto">
+            <table  class="w-full text-sm text-left text-gray-500 dark:text-gray-400" style="table-layout: fixed;">
+                <colgroup>
+                    <col style="width: 25%;" />
+                    <col style="width: 25%;" />
+                    <col style="width: 25%;" />
+                    <col style="width: 25%;" />
+                </colgroup>
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Product name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Price
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Category
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Image
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of products" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white" style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{ data.title }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ data.price }}
+                        </td>
+                        <td class="px-6 py-4">
+                            Books
+                        </td>
+                        <td class="px-6 py-4">
+                            <img class="rounded-t-lg" [src]="data.image_url" alt="" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        
+    </div>
+  </div>
+  <div *ngIf="loading">
+    <div class="flex h-screen items-center justify-center">
+        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+  </div>
+
+
+
+
